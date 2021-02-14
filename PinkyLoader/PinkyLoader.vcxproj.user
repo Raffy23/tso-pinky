@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LocalDebuggerCommandArguments>"tso://lang=de-de&amp;e=true&amp;ubb=true&amp;bb=http%3A%2F%2Fw11bb01.diesiedleronline.de%2F&amp;s=https%3A%2F%2Fubistatic-a.akamaihd.net%2F0018%2Flive%7Chttps%3A%2F%2Fubistatic-a.akamaihd.net%2F0018%2Flive&amp;chatS=http%3A%2F%2Fw11chat01.diesiedleronline.de%3A80&amp;chatB=http%3A%2F%2Fw11chat01.diesiedleronline.de%3A80&amp;country=AT&amp;realmBeta=false&amp;realmLang=de&amp;dsoAuthUser=1495635&amp;dsoAuthToken=816d1f22aee36e2f63536cc4305bc3cf2b8873a8&amp;baseUri=https%3A%2F%2Fwww.diesiedleronline.de%2Fde&amp;realm=11/"</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerCommandArguments>"tso://lang=de-de&amp;e=true&amp;ubb=true&amp;bb=http%3A%2F%2Fw11bb01.diesiedleronline.de%2F&amp;s=https%3A%2F%2Fubistatic-a.akamaihd.net%2F0018%2Flive%7Chttps%3A%2F%2Fubistatic-a.akamaihd.net%2F0018%2Flive&amp;chatS=http%3A%2F%2Fw11chat01.diesiedleronline.de%3A80&amp;chatB=http%3A%2F%2Fw11chat01.diesiedleronline.de%3A80&amp;country=AT&amp;realmBeta=false&amp;realmLang=de&amp;dsoAuthUser=1495635&amp;dsoAuthToken=816d1f22aee36e2f63536cc4305bc3cf2b8873a8&amp;baseUri=https%3A%2F%2Fwww.diesiedleronline.de%2Fde&amp;realm=11/"</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+</Project>

@@ -1,5 +1,14 @@
 /.vs
 /Debug
 /Release
+/x64
+/Pinky/Debug/
+/Pinky/Release/
+/Pinky/x64
+/PinkyLoader/Debug/
+/PinkyLoader/Release/
+/PinkyLoader/x64
 /lib
 /Pinky.json
+/PinkyLoader/Pinky.json
+*.aps
