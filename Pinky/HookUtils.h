@@ -50,6 +50,8 @@ namespace pinky {
          */
         extern int suspendThreadsAndExecute(std::function<bool(void)> f);
 
+        extern bool isProcessRunning(const wchar_t* processName);
+
 	}
 
 }

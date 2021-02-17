@@ -11,9 +11,9 @@ namespace pinky {
 		 * Function for hooking the TSO unpacker, hooks the CreateMutex functions
 		 * to enable multiple TSO instances.
 		 */
-		extern bool hookUnpacker();
+		extern bool hookUnpacker(bool isSecondInstance);
 
-		extern Kernel32_t synchApiFunc;
+		extern Kernel32_t kernel32Func;
 
 		HANDLE DetourCreateMutexExW(
 			LPSECURITY_ATTRIBUTES lpMutexAttributes,
@@ -33,6 +33,15 @@ namespace pinky {
 			LPCWSTR               lpCurrentDirectory,
 			LPSTARTUPINFOW        lpStartupInfo,
 			LPPROCESS_INFORMATION lpProcessInformation
+		);
+
+		BOOL DetourCopyFileExW(
+			LPCWSTR            lpExistingFileName,
+			LPCWSTR            lpNewFileName,
+			LPPROGRESS_ROUTINE lpProgressRoutine,
+			LPVOID             lpData,
+			LPBOOL             pbCancel,
+			DWORD              dwCopyFlags
 		);
 	}
 }

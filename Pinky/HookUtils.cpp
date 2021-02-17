@@ -49,3 +49,22 @@ int pinky::hook::suspendThreadsAndExecute(std::function<bool(void)> f)
 
     return EXIT_SUCCESS;
 }
+
+// https://stackoverflow.com/questions/1591342/c-how-to-determine-if-a-windows-process-is-running/5303889
+bool pinky::hook::isProcessRunning(const wchar_t* processName) {
+    bool exists = false;
+    PROCESSENTRY32 entry;
+    entry.dwSize = sizeof(PROCESSENTRY32);
+
+    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
+
+    if (Process32First(snapshot, &entry))
+        while (Process32Next(snapshot, &entry))
+            if (_wcsicmp(entry.szExeFile, processName) == 0 && entry.th32ProcessID != GetCurrentProcessId()) {
+                exists = true;
+                break;
+            }
+                
+    CloseHandle(snapshot);
+    return exists;
+}

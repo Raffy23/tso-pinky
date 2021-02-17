@@ -16,6 +16,7 @@ namespace pinky {
 		namespace kernel32 {
 			typedef function<HANDLE, LPSECURITY_ATTRIBUTES, LPCWSTR, DWORD, DWORD> CreateMutexExW;
 			typedef function<BOOL, LPCWSTR, LPWSTR, LPSECURITY_ATTRIBUTES, LPSECURITY_ATTRIBUTES, BOOL, DWORD, LPVOID, LPCWSTR, LPSTARTUPINFOW, LPPROCESS_INFORMATION> CreateProcessW;
+			typedef function<BOOL, LPCWSTR, LPCWSTR, LPPROGRESS_ROUTINE, LPVOID, LPBOOL, DWORD> CopyFileExW;
 		}
 
 		struct WinInet_t {
@@ -26,6 +27,7 @@ namespace pinky {
 		struct Kernel32_t {
 			kernel32::CreateMutexExW CreateMutexExW = nullptr;
 			kernel32::CreateProcessW CreateProcessW = nullptr;
+			kernel32::CopyFileExW CopyFileExW = nullptr;
 		};
 
 	}

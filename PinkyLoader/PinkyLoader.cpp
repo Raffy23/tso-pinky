@@ -61,7 +61,7 @@ int main(int argc, char **argv)
         CWD,
         argv[1]
     };
-
+    
     if (pinky_hookUnpacker(&config) != EXIT_SUCCESS)
         error("Unable to hook 'The Settlers Online.exe'");
     

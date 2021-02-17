@@ -125,6 +125,7 @@ DWORD pinky::hookProcess(ProcessInfo* procInfo, uint64_t breakPointOffset, LPTHR
         if (!DebugActiveProcessStop(procInfo->pi.dwProcessId))
             pinky::utils::perrorWin32("DebugActiveProcessStop");
 
+        std::free(dbgEvent);
     }
     
     // Inject Pinky.dll into process
