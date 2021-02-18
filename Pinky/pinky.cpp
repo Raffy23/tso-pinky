@@ -63,8 +63,12 @@ DWORD pinky::hookProcess(ProcessInfo* procInfo, uint64_t breakPointOffset, LPTHR
         if (!GetThreadContext(procInfo->pi.hThread, threadContext))
             utils::perrorWin32("GetThreadContext");
 
+#if defined _M_IX86
+        ULONG_PTR* peb = (ULONG_PTR*)threadContext->Edx;
+#elif defined _M_X64
         ULONG_PTR* peb = (ULONG_PTR*)threadContext->Rdx;
-
+#endif
+       
         if (!ReadProcessMemory(procInfo->pi.hProcess, static_cast<PVOID>(&peb[2]), &imageBaseAddress, sizeof(PVOID), NULL))
             pinky::utils::perrorWin32("ReadProcessMemory");
 
@@ -77,8 +81,8 @@ DWORD pinky::hookProcess(ProcessInfo* procInfo, uint64_t breakPointOffset, LPTHR
     {
         const auto breakpointLocation = reinterpret_cast<BYTE*>(imageBaseAddress) + breakPointOffset;
         BYTE instructionBackup = 0x00;
-        size_t instBytesRead = 0;
-        size_t instBytesWritten = 0;
+        SIZE_T instBytesRead = 0;
+        SIZE_T instBytesWritten = 0;
 
         if (!ReadProcessMemory(procInfo->pi.hProcess, breakpointLocation, &instructionBackup, sizeof(BYTE), &instBytesRead))
             pinky::utils::perrorWin32("ReadProcessMemory");
@@ -114,7 +118,13 @@ DWORD pinky::hookProcess(ProcessInfo* procInfo, uint64_t breakPointOffset, LPTHR
             CONTEXT* threadContext = reinterpret_cast<CONTEXT*>(std::calloc(1, sizeof(CONTEXT)));
 
             GetThreadContext(procInfo->pi.hThread, threadContext);
+
+#if defined _M_IX86
+            threadContext->Eip -= 1;
+#elif defined _M_X64
             threadContext->Rip -= 1;
+#endif
+            
             SetThreadContext(procInfo->pi.hThread, threadContext);
 
             std::free(threadContext);
