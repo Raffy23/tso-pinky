@@ -57,8 +57,8 @@ DWORD pinky_hookUnpacker(PinkyConfig* config) {
         ) {
         pinky::utils::perrorWin32("CreateProcessA");
     }
-
-    const auto result = pinky::hookProcess(tsoProcInfo, 0x0000126d0, pinky::hook::UnpackerHookEntryPoint, const_cast<char *>(config->uri), strlen(config->uri));
+    
+    const auto result = pinky::hookProcess(tsoProcInfo, 0x0000126e2, pinky::hook::UnpackerHookEntryPoint, const_cast<char *>(config->uri), strlen(config->uri));
     pinky::utils::shouldDisplayMessageBox = true;
 
     return result;

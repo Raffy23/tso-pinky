@@ -231,7 +231,15 @@ DWORD pinky::hookProcess(ProcessInfo* procInfo, uint64_t breakPointOffset, LPTHR
         if (hRemotePinkyThread == INVALID_HANDLE_VALUE || hRemotePinkyThread == nullptr)
             pinky::utils::perrorWin32("Can initalize hook function");
 
-        WaitForSingleObject(hRemotePinkyThread, INFINITE);
+        // prevent deadlock; for some uknown reason thread can
+        // wait for main thread resume before exit ...
+        DWORD threadState = 0;
+        while ((threadState = WaitForSingleObject(hRemotePinkyThread, 100)) != WAIT_OBJECT_0) {
+            ResumeThread(procInfo->pi.hThread);
+            Sleep(1);
+            SuspendThread(procInfo->pi.hThread);
+        }
+
     }
   
     // Resume the reomte process
